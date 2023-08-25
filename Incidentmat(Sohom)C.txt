@@ -1,0 +1,87 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+    int n,n2,u,v,ch,e,option;
+
+    int **arr = (int **)calloc(n, sizeof(int *));
+    do
+    {
+        printf("Enter the number of vertices: \n");
+        scanf("%d", &n);
+        printf("Enter the number of edges: \n");
+        scanf("%d", &n2);
+
+    } while(n <= 0 && n2 <= 0);
+	int i ;
+    for ( i = 0; i < n; i++) {
+        
+            /* code */
+        arr[i] = (int *)calloc(n2, sizeof(int));
+        
+    }
+
+    do{
+        printf("You want incidence matrix for \n(1) Directed Graph \n(2) Undirected Graph:\n");
+        printf("Entrer your choice: ");
+        scanf("%d", &option);
+        if(option != 1 && option != 2) {
+            printf("Enter a valid option!!\n");
+        }
+    }while(option != 1 && option != 2);
+
+
+    switch (option) 
+    {
+    case 1:
+    {   
+        
+        do
+        {
+            printf("Enter the index of source vertex and destination vertex and edge number: \n");
+            scanf("%d%d%d", &u, &v, &e);
+
+            arr[u-1][e-1] = 1;
+            arr[v-1][e-1] = -1;
+
+            printf("Do you enter more?(1/0)\n");
+            scanf("%d", &ch); 
+        } while (ch != 0);
+
+
+        break;
+    }
+    case 2:
+    { 
+        do
+        {
+            printf("Enter the index of vertex pair and edge number: \n");
+            scanf("%d%d%d", &u, &v, &e);
+
+            arr[u-1][e-1] = 1;
+            arr[v-1][e-1] = 1;
+
+            printf("Do you want to add more edges?(1/0)\n");
+            scanf("%d", &ch); 
+        } while (ch != 0);
+        
+        break;
+    }
+    default:
+        break;
+    }
+
+    printf("The matrix is: \n");
+
+
+    for (u = 0; u < n; u++) {
+        for (e = 0; e < n2; e++) {
+            printf("%d ", arr[u][e]); 
+        }
+        printf("\n");    
+    }
+
+
+   return 0;
+    
+}
